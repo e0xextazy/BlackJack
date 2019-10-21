@@ -11,7 +11,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSInteger, CardType){
-    CardTypeOne,
     CardTypeTwo,
     CardTypeThree,
     CardTypeFour,
@@ -27,11 +26,20 @@ typedef NS_ENUM(NSInteger, CardType){
     CardTypeAce
 };
 
+typedef NS_ENUM(NSInteger, CardSuit){
+    CardSuitHearts,
+    CardSuitDiamonds,
+    CardSuitClubs,
+    CardSuitSpades
+};
+
 @interface Card : NSObject {
     CardType _type;
+    CardSuit _suit;
 }
 //@property (nonatomic, assign) CardType type; (вместо фигурных скобок выше)
 - (NSString *) name;
+- (NSString *) suit;
 - (NSInteger) score;
 
 - (BOOL) isAce;

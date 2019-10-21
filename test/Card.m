@@ -15,62 +15,57 @@
     self = [super init];
     if (self) {
         _type = arc4random_uniform(12);
+        _suit = arc4random_uniform(3);
     }
     return self;
 }
 
 - (NSString *) name {
     switch (_type) {
-        case CardTypeOne:
-            return @"One";
-            
         case CardTypeTwo:
-            return @"Two";
+            return @"2";
             
         case CardTypeThree:
-            return @"Three";
+            return @"3";
             
         case CardTypeFour:
-            return @"Four";
+            return @"4";
             
         case CardTypeFive:
-            return @"Five";
+            return @"5";
             
         case CardTypeSix:
-            return @"Six";
+            return @"6";
             
         case CardTypeSeven:
-            return @"Seven";
+            return @"7";
             
         case CardTypeEight:
-            return @"Eight";
+            return @"8";
             
         case CardTypeNine:
-            return @"Nine";
+            return @"9";
             
         case CardTypeTen:
-            return @"Ten";
+            return @"10";
             
         case CardTypeJack:
-            return @"Jack";
+            return @"J";
             
         case CardTypeQueen:
-            return @"Queen";
+            return @"Q";
             
         case CardTypeKing:
-            return @"King";
+            return @"K";
             
         case CardTypeAce:
-            return @"Ace";
+            return @"A";
     }
     @throw [[NSException alloc] init];
 }
 
 - (NSInteger) score {
     switch (_type) {
-        case CardTypeOne:
-            return 1;
-            
         case CardTypeTwo:
             return 2;
             
@@ -110,6 +105,25 @@
         case CardTypeAce:
             return 11;
     }
+    @throw [[NSException alloc] init];
+}
+
+- (NSString *) suit {
+    switch (_suit) {
+        case CardSuitClubs:
+            return @"C";
+            
+        case CardSuitHearts:
+            return @"H";
+            
+        case CardSuitSpades:
+            return @"S";
+            
+        case CardSuitDiamonds:
+            return @"D";
+            
+    }
+    @throw [[NSException alloc] init];
 }
 
 - (BOOL) isAce {

@@ -31,9 +31,7 @@
     Card * card1 = [[Card alloc] init];
     Card * card2 = [[Card alloc] init];
     [_myCards addObjectsFromArray:@[card1, card2]];
-    
     [_dealerCards addObject:[[Card alloc] init]];
-    
     [self printMy];
     [self printDealer];
 }
