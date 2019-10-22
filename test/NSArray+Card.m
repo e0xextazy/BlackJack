@@ -13,7 +13,7 @@
 
 - (NSString *) getCardNames {
     NSMutableString * cardNames = [[NSMutableString alloc] init];
-    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) { // тоже самое что в функции ниже, только через блок
+    [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         Card * card = obj;
         [cardNames appendString:[card name]];
         [cardNames appendString:[card suit]];
@@ -40,18 +40,3 @@ __block NSInteger aceCount = 0;
 }
 
 @end
-/*- (NSInteger) calcScore {
-    NSInteger score = 0;
-    NSInteger aceCount = 0;
-    for (Card * card in self) {
-        score += [card score];
-        if([card isAce]) {
-            aceCount++;
-        }
-    }
-    while (aceCount > 0 && score > 21) {
-        score -= 10;
-        aceCount--;
-    }
-    return score;
-}*/

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (Card) // Категория и 2 новых метода
+@interface NSArray (Card)
 - (NSString *) getCardNames;
 - (NSInteger) calcScore;
 @end

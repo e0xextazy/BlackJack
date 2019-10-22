@@ -23,21 +23,37 @@
     if (self) {
         _myCards = [NSMutableArray new];
         _dealerCards = [NSMutableArray new];
+        _busyCards = [NSMutableArray new];
     }
     return self;
 }
 
 - (void) startGame {
     Card * card1 = [[Card alloc] init];
+    [_busyCards addObject:card1];
+    [_myCards addObject:card1];
     Card * card2 = [[Card alloc] init];
-    [_myCards addObjectsFromArray:@[card1, card2]];
-    [_dealerCards addObject:[[Card alloc] init]];
+    while ([_busyCards containsObject:card2]) {
+        card2 = [[Card alloc] init];
+    }
+    [_busyCards addObject:card2];
+    [_myCards addObject:card2];
+    Card * card3 = [[Card alloc] init];
+    while ([_busyCards containsObject:card3]) {
+        card3 = [[Card alloc] init];
+    }
+    [_dealerCards addObject:card3];
     [self printMy];
     [self printDealer];
 }
 
 - (void) hitMe {
-    [self.myCards addObject:[[Card alloc] init]];
+    Card * card = [[Card alloc] init];
+    while ([_busyCards containsObject:card]) {
+        card = [[Card alloc] init];
+    }
+    [_busyCards addObject:card];
+    [_myCards addObject:card];
 }
     
 - (BOOL) hitDealer {
@@ -45,7 +61,12 @@
     if (dealerScore > 17) {
         return NO;
     }
-    [self.dealerCards addObject:[[Card alloc] init]];
+    Card * card = [[Card alloc] init];
+    while ([_busyCards containsObject:card]) {
+        card = [[Card alloc] init];
+    }
+    [_busyCards addObject:card];
+    [_dealerCards addObject:card];
     return YES;
 }
 
@@ -66,8 +87,7 @@
 }
 
 - (BOOL) iHaveHigherScore {
-    //NSInteger dealerScore = [self calcScoreFor:self.dealerCards];
-    NSInteger dealerScore = [self.dealerCards calcScore]; // Можно и так и так как выше
+    NSInteger dealerScore = [self.dealerCards calcScore];
     NSInteger myScore = [self calcScoreFor:self.myCards];
     if (dealerScore < myScore) {
         return YES;
@@ -109,29 +129,10 @@
 }
 
 - (NSString *) getCardNames:(NSArray *)cards {
-    /*NSMutableString * cardNames = [[NSMutableString alloc] init];
-    for (Card * card in cards) {
-        [cardNames appendString:[card name]];
-        [cardNames appendString:@" "];
-    }
-    return cardNames;*/
     return [cards getCardNames];
 }
 
 - (NSInteger) calcScoreFor:(NSArray *)cards {
-    /*NSInteger score = 0;
-    NSInteger aceCount = 0;
-    for (Card * card in cards) {
-        score += [card score];
-        if([card isAce]) {
-            aceCount++;
-        }
-    }
-    while (aceCount > 0 && score > 21) {
-        score -= 10;
-        aceCount--;
-    }
-    return score;*/
     return [cards calcScore];
 }
 

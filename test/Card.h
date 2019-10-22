@@ -37,7 +37,6 @@ typedef NS_ENUM(NSInteger, CardSuit){
     CardType _type;
     CardSuit _suit;
 }
-//@property (nonatomic, assign) CardType type; (вместо фигурных скобок выше)
 - (NSString *) name;
 - (NSString *) suit;
 - (NSInteger) score;

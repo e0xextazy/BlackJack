@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property NSMutableArray * myCards;
 @property NSMutableArray * dealerCards;
+@property NSMutableArray * busyCards;
 
 - (void) startGame;
 
